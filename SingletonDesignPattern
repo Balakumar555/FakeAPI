@@ -1,0 +1,46 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Singleton obj =  Singleton.GetInstance();
+		obj.Message("Test 1");
+		Singleton obj1 =  Singleton.GetInstance();
+		obj1.Message("Test 2");
+		Console.WriteLine("Constructor was called {0} time(s).", Singleton.counter);
+		
+	}
+	
+	public class Singleton
+	{
+		public static Singleton _instance;
+		private static readonly object _lock = new object();
+		public static int counter =0;
+		private Singleton()
+		{
+			counter++;
+		}
+		public static Singleton GetInstance()
+		{
+			if(_instance == null)
+			{
+				lock(_lock)
+				{
+					if(_instance == null)
+					{
+					_instance = new Singleton();
+						
+					}
+					
+				}
+				
+			}
+			return _instance;
+		}
+		public void Message(string data)
+		{
+		Console.WriteLine(data);	
+		}
+	}
+}
