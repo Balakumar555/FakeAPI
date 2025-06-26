@@ -1,0 +1,371 @@
+
+namespace ConsolePractice
+{   
+
+    // Duplicates chars in string
+    public class Logical_Programs
+    {
+        public static void Main111(string[] args)
+        {
+            ReverseString();
+            Reverse_Words();
+            Occurance("Balakumar");
+            int[] intArray = { 1, 2, 2, 3, 3, 4, 55, 6 ,88,44,55,77,222,111,444};
+            Integer_Occurance(intArray);
+            Console.ReadLine();
+
+        }
+        public static void ReverseString()
+        {
+            string s = "Balakumar";
+            string rs = "";
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                rs += s[i];
+            }
+            Console.WriteLine("Reverse string is "+rs);
+           
+        }
+        public static void Reverse_Words()
+        {
+            string s = "Bala kumar swamy";
+            string[] str1 = s.Split(" ");
+            string rs = "";
+            for (int i = str1.Length - 1; i >= 0; i--)
+            {
+                rs += str1[i]+" ";
+            }
+            Console.WriteLine("Reverse words are " + rs);
+
+        }
+        public static void Occurance(string name1)
+        {
+            int[] count = new int[256];
+            foreach (char c in name1)
+            {
+                count[c]++;
+            }
+            for (int i = 0; i < count.Length; i++)
+            {
+                if (count[i] > 0)
+                    Console.WriteLine("character: " + (char)i + " count " + count[i]);
+            }
+        }
+        public static void Integer_Occurance(int[] intArray)
+        {
+            int[] count = new int[512];
+            foreach (int c in intArray)
+            {
+                count[c]++;
+            }
+            for (int i = 0; i < count.Length; i++)
+            {
+                if (count[i] > 0)
+                    Console.WriteLine("character: " + (int)i + " count " + count[i]);
+            }
+        }
+        void get() 
+        {
+            string name = "Balakumar";
+            // int[] name = { 1, 2, 2, 3, 3, 4, 55, 6 };
+            int[] count = new int[256];
+            foreach (char i in name)
+            {
+                count[i]++;
+            }
+            for (int i = 0; i < count.Length; i++)
+            {
+                if (count[i] > 1)
+                    Console.WriteLine("character: " + (char)i + " count " + count[i]);
+            }
+
+        }
+    } 
+
+
+    #region "reverse string"
+    /*
+      string s = "Balakumar";
+    string rs = "";
+
+    for (int i = s.Length - 1; i >= 0; i--)
+    {
+        rs += s[i];
+    }
+
+    Console.WriteLine(rs);
+    Console.ReadLine();
+    */
+    #endregion
+
+    #region "reverse word in string"
+
+    /* " reverse word in string"
+      string s = "siva bhaskar reddy";
+                string[] str1 = s.Split(" ");
+                foreach (string str in str1)
+                {
+                    string rev = " ";
+                    for (int i = str.Length - 1; i >= 0; i--)
+                    {
+                        rev  += str[i];
+                    }
+                    Console.Write(rev +" ");
+                }
+     */
+    #endregion
+
+
+
+    #region "Even Odd"
+    /*
+       string name = "balakumarkj";
+    string result = "";
+
+        for (int i = 0; i<name.Length; i++)
+        {
+            if (i % 2 == 0) // Even index
+            {
+                result += char.ToLower(name[i]);
+            }
+            else // Odd index
+            {
+    result += char.ToUpper(name[i]);
+            }
+        }
+
+        Console.WriteLine(result); // Output: bAlAkUmAr
+     */
+    #endregion
+
+    #region "Palindrome number"
+    /* int number = 1221;
+     int tmp_number = number;
+     int reverse = 0;
+             while (tmp_number != 0)
+             {
+                 reverse = (reverse* 10) + tmp_number % 10;
+                 tmp_number /= 10;
+             }
+    Console.Write(reverse);
+    if (number == reverse)
+    {
+     Console.WriteLine(" The number is palindrome");
+    }
+    else
+    {
+     Console.WriteLine(" The number isn't palindrom");
+    }
+     #endregion
+    */
+    #region "reverse a number"
+    /*int number = 1234;
+    int reverse = 0;
+
+    while (number > 0)
+    {
+        reverse = (reverse * 10) + number % 10;
+        number /= 10;
+    }
+    Console.Write(reverse);
+    Console.ReadLine();
+    */
+    #endregion
+    #region " Delegate "
+
+
+    public delegate void DeleMethod(string Message);
+
+    class Program1
+    {
+        static void Main1(string[] args)
+        {
+            // DeleMethod del = new DeleMethod(Hello);
+            Hello("Hello from Delegate");
+
+            Console.ReadLine();
+
+
+        }
+        public static void Hello(string strMessage)
+        {
+            Console.WriteLine(strMessage);
+        }
+
+    }
+
+    #endregion
+    #region  "Find second highest number"
+    /*
+    int[] myArray = new int[] { 2, 3, 13, 8, 5,101,2,2,2,2,200,300 };
+              int largest =0;
+              int second = 0;
+              int third = 0;
+              int min=0;
+
+                    foreach (int i in myArray)
+                   {
+                             if (i > largest)
+                             {
+                               third= second;
+                               second = largest;
+                               largest = i;
+                             }
+
+                            else if (i > second)
+                            {
+                              third = second;
+                              second = i;
+                            }
+                        else if (i > third)
+                            {
+                              third = i;
+                            }
+
+                   }   
+                    Console.WriteLine(largest);
+                     Console.WriteLine(second);
+                        Console.WriteLine(third);
+                     Console.WriteLine(myArray.Min());
+                     Console.WriteLine(myArray.Max()); 
+
+     */
+    #endregion
+    #region " Star patterns"
+    /*
+    for (int row = 2; row <= 8; row++)
+                {
+                    for (int col = 1; col <= row; col++)
+                    {
+                        Console.Write("*");
+                    }
+
+                    Console.WriteLine();
+
+                }
+                Console.ReadLine();
+
+     */
+    #endregion
+    #region "find Age "
+    /*
+                var birthday = new DateTime(1980, 12, 11);
+                var age = DateTime.Now.Year - birthday.Year;
+                Console.WriteLine(age);
+                Console.ReadLine();  
+
+     */
+
+    #endregion
+    #region " Find file path"
+    /*
+      string folderPath = @"C:\Users\balu0\source\repos\ConsolePractice\ConsolePractice\Employee";
+                if (Directory.Exists(folderPath))
+                {
+                    Console.WriteLine("Folder found at: " + folderPath);
+                }
+                else
+                {
+                    Console.WriteLine("Folder not found.");
+                }
+     */
+    /* "Application Path"
+     string path = Assembly.GetEntryAssembly().Location;
+                Console.WriteLine(path);
+     */
+    #endregion
+    #region " Duplicate words in string"
+    /*
+     String string1 = "Big black bug bit a big black dog on his big black nose";
+                int count;
+
+                //Converts the string into lowercase  
+                string1 = string1.ToLower();
+
+                //Split the string into words using built-in function  
+                String[] words = string1.Split(' ');
+
+                Console.WriteLine("Duplicate words in a given string : ");
+                for (int i = 0; i < words.Length; i++)
+                {
+                    count = 1;
+                    for (int j = i + 1; j < words.Length; j++)
+                    {
+                        if (words[i].Equals(words[j]))
+                        {
+                            count++;
+                            //Set words[j] to 0 to avoid printing visited word  
+                            words[j] = "0";
+                        }
+                    }
+
+                    //Displays the duplicate word if count is greater than 1  
+                    if (count > 1 && words[i] != "0")
+                        Console.WriteLine(words[i]+ " "+count);
+
+                }
+                Console.ReadKey();
+     */
+    #endregion
+    #region"Fibonacci Series"
+    /*
+      int first = 0, second = 1, next_number = 0, number = 100;
+                Console.Write(first+" "+second+" ");
+                next_number = first + second;
+                for (int i = 2;  next_number < number; i++)
+                {
+                  Console.Write(next_number+" ");
+                    first = second;
+                    second = next_number;
+                    next_number = first+second;
+                }
+                Console.ReadKey();
+     */
+    #endregion
+
+    #region "Remove Duplicates"
+    /*
+                string data = "interview";
+                string result = "";
+
+                for (int i = 0; i < data.Length; i++)
+                {
+                    if(!result.Contains(data[i]))
+                        result += data[i];
+                }
+                Console.WriteLine(result);
+                Console.ReadLine();
+     */
+    #endregion
+    #region "print prime numbers"
+    /*
+     int target = 100;
+                bool flag = false;
+                int j;            
+                for (int i = 2; i <= target; i++)
+                {
+                    for (j = 2; j < i; j++)
+                    {
+                        // A number is not prime if it is divisible by any other number,
+                        // other than 1 and itself.
+                        if (i % j == 0)
+                        {
+                            flag = true;
+                            // We can break out of the inner for loop as we know the number
+                            // is not prime
+                            break;
+                        }
+
+                    }
+
+                    // Print the number if it is not composite
+                    if (!flag)
+                        Console.Write("{0} ", j);
+                    else
+                        flag = false;
+                }
+                Console.ReadKey();
+     */
+    #endregion
+}
+#endregion
