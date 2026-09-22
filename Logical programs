@@ -368,4 +368,239 @@ namespace ConsolePractice
      */
     #endregion
 }
+using System;
+public class Program
+{
+    public static void Main(string[] args)
+    {
+       // ReverseString("sagar patil");
+        //ReverseStringUsingRecursion("Hello");
+        //ReverseFullSentence("Bala kumar");
+        //ReverseNumber(1234);
+        //int[] arrays = [2,0, 45, 7, 99, 22, 44,88];
+        //NthLargestNumber(arrays);
+        //Console.WriteLine(IsAnagram("Listen", "Silent"));
+        //CheckinputStringOrInteger("Test");
+        //int[] array1 = { 1, 2, 3, 4, 5 };
+        //int[] array2 = { 4, 5, 6, 7, 8 };
+        //FindCommonElements(array1, array2);
+        //RemoveDuplicates("Hello, World!");
+        //OccurrenceOfEachCharacter("Hello World");
+        //OccurrenceDictionary("Hello World");
+        char firstNonRepeating = FirstNonRepeatingCharacter("alal");
+        Console.WriteLine($"First non-repeating character: {firstNonRepeating}");
+
+        Console.ReadKey();
+    }
+
+
+    public static void ReverseString(string input)
+    {
+        //char[] charArray = input.ToCharArray();
+        //Array.Reverse(charArray);
+        //string reversedString = new string(charArray);
+        //Console.WriteLine(reversedString);
+        string reversedString = "";
+        for (int i = input.Length - 1; i >= 0; i--)
+        {
+            reversedString += input[i];
+        }
+        Console.WriteLine(reversedString);
+    }
+
+    public static void ReverseFullSentence(string input)
+    {
+        string[] words = input.Split(' ');
+        for (int i = words.Length - 1; i >= 0; i--)
+        {
+            Console.Write(words[i] + " ");
+        }
+    }
+    public static void ReverseNumber(int number)
+    {
+        int reverseNumber = 0;
+        int lastDigit = 0;
+        while (number > 0)
+        {
+            lastDigit = number % 10;
+            reverseNumber = (reverseNumber * 10) + lastDigit;
+
+            number = number / 10;
+        }
+        Console.Write(reverseNumber);
+    }
+    public static void NthLargestNumber(int[] array)
+    {
+        int max=0, second=0, third=0, min=0;
+        foreach (int num in array) 
+        {
+            if(num > max)
+            {
+                third = second;
+                second = max; 
+                max = num;
+                
+            }
+            else if(num > second && num !=max) 
+            {
+                third = second;
+                second = num;
+            }
+        }
+        Console.WriteLine("print max "+ max );
+        Console.WriteLine("print second "+ second );
+        Console.WriteLine("print third " + third);
+
+    }
+    public static bool IsAnagram(string str1, string str2)
+    {
+        if (str1.Length != str2.Length)
+        {
+            return false;
+        }
+        char[] charArray1 = str1.ToLower().ToCharArray();
+        char[] charArray2 = str2.ToLower().ToCharArray();
+        Array.Sort(charArray1);
+        Array.Sort(charArray2);
+       
+        return charArray1.SequenceEqual(charArray2);
+    }
+    public static void CheckinputStringOrInteger(string input)
+    {
+        int result=0;
+        if(int.TryParse(input, out result))
+        {
+            Console.WriteLine("Input is an integer: " + result);
+        }
+        else
+        {
+            Console.WriteLine("Input is a string: " + input);
+        }   
+        
+    }
+    public static void FindCommonElements(int[] array1, int[] array2)
+    {
+        for(int i = 0; i < array1.Length; i++)
+        {
+            for (int j = 0; j < array2.Length; j++)
+            {
+                if (array1[i] == array2[j])
+                {
+                    Console.Write( array1[i]+" ");
+                   
+                }
+            }
+        }
+
+    }
+    public static void RemoveDuplicates(string input)
+    {
+        string result = "";
+        foreach (char c in input)
+        {
+            if (!result.Contains(c))
+            {
+                result += c;
+            }
+        }
+        Console.WriteLine(result);
+    }
+    public static void OccurrenceOfEachCharacter(string input)
+    {
+        int[] count = new int[256];
+        foreach (char c in input)
+        {
+            count[c]++;
+        }
+        for (int i = 0; i < 256; i++)
+        {
+            if (count[i] > 0)
+            {
+                Console.WriteLine($"Character: {(char)i}, Occurrence: {count[i]}");
+            }
+        }
+    }
+    public static void OccurrenceDictionary(string input)
+    {
+        Dictionary<char, int> dic = new Dictionary<char, int>();
+        foreach (char c in input.Replace(" ", ""))
+        {
+            if (dic.ContainsKey(c))
+            {
+                dic[c]++;
+            }
+            else
+            {
+                dic.Add(c, 1);
+            }
+        }
+        foreach (var item in dic.OrderBy(x => char.ToLower(x.Key)))
+        {
+            Console.WriteLine($"Character: {item.Key}, Occurrence: {item.Value}");
+        }
+        
+    }
+    public static void TwoSum(int[] nums, int target)
+    {
+        for (int i = 0; i < nums.Length; i++)
+        {
+            for (int j = i + 1; j < nums.Length; j++)
+            {
+                if (nums[i] + nums[j] == target)
+                {
+                    Console.WriteLine($"Indices: {i}, {j}");
+                    return;
+                }
+            }
+        }
+        Console.WriteLine("No two sum solution found.");
+    }
+    public static void TwoSumTwoPointer(int[] nums, int target)
+    {
+        Array.Sort(nums);
+        int left = 0;
+        int right = nums.Length - 1;
+        while (left < right)
+        {
+            int sum = nums[left] + nums[right];
+            if (sum == target)
+            {
+                Console.WriteLine($"Indices: {left}, {right}");
+                return;
+            }
+            else if (sum < target)
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+        Console.WriteLine("No two sum solution found.");
+    }
+    public static char FirstNonRepeatingCharacter(string input)
+    {
+        Dictionary<char, int> charCount = new Dictionary<char, int>();
+        foreach (char c in input)
+        {
+            if (charCount.ContainsKey(c))
+            {
+                charCount[c]++;
+            }
+            else
+            {
+                charCount[c] = 1;
+            }
+        }
+        foreach (char c in input)
+        {
+            if (charCount[c] == 1)
+            {
+                return c;
+            }
+        }
+        return '\0'; // Return null character if no non-repeating character is found
+    }
+}
 #endregion
